@@ -1,0 +1,17 @@
+source 'https://rubygems.org'
+
+gem 'rails', '~> 4.2.1'
+
+gem 'mysql2'
+gem 'phonelib'
+gem 'unicorn', require: false
+gem 'httparty', '~> 0.13.7'
+gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'haml'
+
+group :development, :test do
+  gem 'spring'
+  gem 'byebug'
+  gem 'rspec-rails'
+  gem 'dotenv-rails'
+end
