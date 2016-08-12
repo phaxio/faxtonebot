@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'delayed_job_active_record'
 gem 'coffee-rails'
+gem 'unicorn'
 
 group :development, :test do
   gem 'spring'
