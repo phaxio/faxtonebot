@@ -1,3 +1,6 @@
+-@title="FaxTone Bot"
+
+= render_flashes
 =link_to "Create tone check group", new_tone_check_group_path, class: 'btn btn-success'
 %br
 %br
@@ -31,6 +34,21 @@
               %td= group.created_at
               %td
                 = link_to "View", tone_check_group_path(group), class: 'btn btn-primary btn-xs'
-                = link_to "Delete", tone_check_group_path(group), method: 'delete', class: 'btn btn-danger btn-xs'
+                = link_to "Delete", '#', class: 'btn btn-danger btn-xs delete_group', data_name: group.name, data_id: group.id
 
 
+#delete_confirm_modal.modal.fade{"aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#exampleModalLabel.modal-title
+          Confirm
+      .modal-body
+        Are you sure you want to delete check group
+        %span.name
+        ?
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-danger{:type => "button"} Delete

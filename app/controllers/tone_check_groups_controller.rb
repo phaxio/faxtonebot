@@ -9,6 +9,11 @@ class ToneCheckGroupsController < ApplicationController
     @group = ToneCheckGroup.new
   end
 
+  def show
+    @group = ToneCheckGroup.find(params[:id])
+    @title = @group.name
+  end
+
   def create
     @group = ToneCheckGroup.new(tone_check_group_params)
     numbers_in_error = []
@@ -35,6 +40,15 @@ class ToneCheckGroupsController < ApplicationController
       end
       render action: 'new'
     end
+  end
+
+  def destroy
+    @group = ToneCheckGroup.find(params[:id])
+    @group.destroy
+
+    flash[:notice] = "Deleted group successfully."
+
+    redirect_to tone_check_groups_path
   end
 
   def tone_check_group_params

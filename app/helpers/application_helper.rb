@@ -26,4 +26,24 @@ module ApplicationHelper
 
     html.html_safe
   end
+
+  def render_flashes
+    html = ""
+    flash.each do |name, msg|
+      className = name
+
+      if name == "alert"
+        className = "danger"
+      elsif name == "notice"
+        className = 'success'
+      end
+
+      html << content_tag(:div, class: "alert alert-dismissible alert-#{className}") do
+        content_tag(:button, '×', type: "button", class: "close", "data-dismiss": "alert") + msg
+      end
+    end
+
+    html.html_safe
+  end
+
 end

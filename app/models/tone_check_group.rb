@@ -1,7 +1,7 @@
 class ToneCheckGroup < ActiveRecord::Base
   default_scope { order(created_at: :desc) }
 
-  has_many :tone_checks
+  has_many :tone_checks, -> { order number: :asc }, dependent: :destroy
 
   validates :name, presence: true
   validate :validate_group
@@ -21,4 +21,5 @@ class ToneCheckGroup < ActiveRecord::Base
   def status_class
     status == :complete ? 'success' : 'primary'
   end
+
 end
