@@ -1,0 +1,27 @@
+- @title = "Create new tone check group"
+.page-header
+  %h1= @title
+
+.row
+  .col-lg-12
+    = form_for @group, html: { class: 'form-horizontal' } do |f|
+      %fieldset
+        .form-group
+          %label.col-lg-2.control-label Name
+          .col-lg-10
+            = f.text_field :name, class: 'form-control', placeholder: 'Name'
+            = error_for_field f, :name
+        .form-group
+          %label.col-lg-2.control-label Numbers to check
+          .col-lg-10
+            = text_area_tag :numbers, @numbers, rows: 10, placeholder: "One number per line...\n1-555-123-4567", class: 'form-control ' + (@numbers_error_message ? 'field_with_errors' : '')
+            - if @numbers_error_message
+              .text-danger= @numbers_error_message
+
+        .form-group
+          .col-lg-10.col-lg-offset-2
+            = f.submit "Create", class: 'btn btn-success'
+
+
+
+

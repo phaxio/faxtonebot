@@ -1,0 +1,36 @@
+=link_to "Create tone check group", new_tone_check_group_path, class: 'btn btn-success'
+%br
+%br
+-if @groups.empty?
+  .panel.panel-warning
+    .panel-heading
+      %h3.panel-title Tone Check groups
+    .panel-body
+      No groups available.
+      =link_to "Create one now", new_tone_check_group_path
+-else
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title Tone Check groups
+    .panel-body
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Status
+            %th Number of Calls
+            %th Created
+            %th Actions
+        %tbody
+          -@groups.each do |group|
+            %tr
+              %td= group.name
+              %td
+                %label{class: "label label-" + group.status_class}= group.status
+              %td= group.tone_checks.length.to_s + " calls"
+              %td= group.created_at
+              %td
+                = link_to "View", tone_check_group_path(group), class: 'btn btn-primary btn-xs'
+                = link_to "Delete", tone_check_group_path(group), method: 'delete', class: 'btn btn-danger btn-xs'
+
+

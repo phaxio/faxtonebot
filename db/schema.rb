@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810223717) do
+ActiveRecord::Schema.define(version: 20160812002631) do
 
   create_table "tone_check_groups", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -20,13 +20,17 @@ ActiveRecord::Schema.define(version: 20160810223717) do
   end
 
   create_table "tone_checks", force: :cascade do |t|
-    t.string   "number",     limit: 255
-    t.string   "note",       limit: 255
-    t.string   "result",     limit: 255
-    t.string   "audio_url",  limit: 255
-    t.integer  "status",     limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "number",              limit: 255
+    t.string   "note",                limit: 255
+    t.string   "result",              limit: 255
+    t.string   "audio_url",           limit: 255
+    t.integer  "status",              limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "tone_check_group_id", limit: 4
   end
 
+  add_index "tone_checks", ["tone_check_group_id"], name: "index_tone_checks_on_tone_check_group_id", using: :btree
+
+  add_foreign_key "tone_checks", "tone_check_groups"
 end
