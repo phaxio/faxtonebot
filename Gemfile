@@ -4,7 +4,7 @@ gem 'rails', '~> 4.2.1'
 
 gem 'mysql2'
 gem 'phonelib'
-gem 'unicorn', require: false
+gem 'unicorn'
 gem 'httparty', '~> 0.13.7'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'haml'
@@ -14,7 +14,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'delayed_job_active_record'
 gem 'coffee-rails'
-gem 'unicorn'
 
 group :development, :test do
   gem 'spring'
