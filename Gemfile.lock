@@ -95,6 +95,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    pg (0.18.4)
     phonelib (0.6.3)
     pkg-config (1.1.7)
     rack (1.6.4)
@@ -182,6 +183,7 @@ DEPENDENCIES
   httparty (~> 0.13.7)
   jquery-rails
   mysql2
+  pg
   phonelib
   rails (~> 4.2.1)
   rails-assets-tether (>= 1.1.0)!
