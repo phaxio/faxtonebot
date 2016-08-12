@@ -5,7 +5,27 @@ class ToneCheck < ActiveRecord::Base
   validates :number, presence: true, phone: true
 
   after_create do
-    #queue a job for calling
+    self.status = :queued
+    self.save!
 
+    #self.delay.run_check
+  end
+
+  def status_class
+    classes = {'queued' => 'primary', 'calling' => 'info', 'complete' => 'success' }
+    classes[status]
+  end
+
+  def run_check
+    @client = Twilio::REST::Client.new ENV["TWILIO_SID"], ENV["TWILIO_AUTH_TOKEN"]
+    @call = @client.calls.create(
+        from: ENV["TWILIO_FROM_NUMBER"],
+        to: number,
+        Url: ENV["PUBLIC_HOST"] + Rails.application.routes.url_helpers.twilml_pause_path,
+        StatusCallback: ENV["PUBLIC_HOST"] + Rails.application.routes.url_helpers.tone_check_status_path(self),
+        Record: true
+    )
+    self.status = :calling
+    self.save!
   end
 end

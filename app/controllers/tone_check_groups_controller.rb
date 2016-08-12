@@ -1,3 +1,5 @@
+require 'csv'
+
 class ToneCheckGroupsController < ApplicationController
 
   def index
@@ -12,6 +14,12 @@ class ToneCheckGroupsController < ApplicationController
   def show
     @group = ToneCheckGroup.find(params[:id])
     @title = @group.name
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @group.to_csv, filename: "group-#{@group.id}.csv" }
+    end
+
   end
 
   def create
@@ -53,5 +61,19 @@ class ToneCheckGroupsController < ApplicationController
 
   def tone_check_group_params
     params.require(:tone_check_group).permit(:name)
+  end
+
+  def recheck
+    @group = ToneCheckGroup.find(params[:id])
+
+    @group.tone_checks.each do |check|
+      check.status = :queued
+      check.save
+
+      check.delay.run_check
+    end
+
+    flash[:notice] = "Submitted all calls in group for recheck"
+    redirect_to tone_check_group_path(@group)
   end
 end

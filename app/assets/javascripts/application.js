@@ -17,6 +17,10 @@
 //= require_tree .
 
 $(document).ready(function(){
-    $('.field_with_errors').parents('.form-group').addClass('has-error')
+    $('.field_with_errors').parents('.form-group').addClass('has-error');
+
+    setTimeout(function(){
+        $('.flash.alert-success').fadeOut();
+    }, 3000)
 });
 

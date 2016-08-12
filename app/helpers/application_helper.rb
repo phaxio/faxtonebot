@@ -38,7 +38,7 @@ module ApplicationHelper
         className = 'success'
       end
 
-      html << content_tag(:div, class: "alert alert-dismissible alert-#{className}") do
+      html << content_tag(:div, class: "flash alert alert-dismissible alert-#{className}") do
         content_tag(:button, '×', type: "button", class: "close", "data-dismiss": "alert") + msg
       end
     end
