@@ -8,7 +8,7 @@ class ToneCheck < ActiveRecord::Base
     self.status = :queued
     self.save!
 
-    #self.delay.run_check
+    self.delay.run_check
   end
 
   def status_class
