@@ -77,4 +77,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   config.assets.precompile += %w( .svg .eot .woff .ttf )
+  config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'INFO')
 end
