@@ -12,7 +12,7 @@ class ToneChecksController < ApplicationController
 
       line_error_types = {'no-answer' => 'No answer'}
 
-      if line_error_types.has_key(params['CallStatus'])
+      if line_error_types.has_key?(params['CallStatus'])
         @tone_check.result = line_error_types[params['CallStatus']]
       end
 
