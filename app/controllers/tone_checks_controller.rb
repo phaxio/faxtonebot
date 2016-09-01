@@ -10,7 +10,7 @@ class ToneChecksController < ApplicationController
       @tone_check.audio_url = params['RecordingUrl']
       @tone_check.status = :complete
 
-      line_error_types = {'no-answer' => 'No answer'}
+      line_error_types = {'no-answer' => 'No answer', "busy" => "Busy"}
 
       if line_error_types.has_key?(params['CallStatus'])
         @tone_check.result = line_error_types[params['CallStatus']]
