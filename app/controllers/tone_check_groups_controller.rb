@@ -1,6 +1,7 @@
 require 'csv'
 
 class ToneCheckGroupsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @groups = ToneCheckGroup.all

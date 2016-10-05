@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'tone_check_groups#index'
 
   resources :tone_check_groups

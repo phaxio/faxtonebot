@@ -16,6 +16,8 @@ gem 'delayed_job_active_record'
 gem 'coffee-rails'
 gem 'sass-rails'
 gem 'uglifier'
+gem 'devise'
+gem 'devise_invitable'
 
 group :development, :test do
   gem 'spring'
