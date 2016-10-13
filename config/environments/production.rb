@@ -79,4 +79,9 @@ Rails.application.configure do
   config.assets.precompile += %w( .svg .eot .woff .ttf )
   config.logger = Logger.new(STDOUT)
   config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'INFO')
+
+  config.action_mailer.default_url_options = {
+    :host => ENV["host"]
+  }
+
 end
