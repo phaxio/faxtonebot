@@ -1,6 +1,5 @@
 class ToneChecksController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!
 
   def status
     @tone_check = ToneCheck.find(params[:id])
@@ -24,6 +23,7 @@ class ToneChecksController < ApplicationController
   end
 
   def recheck
+    authenticate_user!
     @tone_check = ToneCheck.find(params[:id])
     @tone_check.run_check
 
@@ -33,6 +33,7 @@ class ToneChecksController < ApplicationController
   end
 
   def update
+    authenticate_user!
     @tone_check = ToneCheck.find(params[:id])
 
     if not @tone_check.update(tone_check_params)
@@ -43,6 +44,7 @@ class ToneChecksController < ApplicationController
   end
 
   def show
+    authenticate_user!
     @tone_check = ToneCheck.find(params[:id])
     render json: @tone_check
   end
