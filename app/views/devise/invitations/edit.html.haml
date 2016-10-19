@@ -1,0 +1,21 @@
+.col-lg-6.col-lg-offset-3
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title= t 'devise.invitations.edit.header'
+    .panel-body
+      = form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, class: 'form-horizontal'} do |f|
+        = devise_error_messages!
+        = f.hidden_field :invitation_token
+        %fieldset
+          -if f.object.class.require_password_on_accepting
+            .form-group
+              %label.col-lg-3.control-label= f.label :password
+              .col-lg-9
+                = f.password_field :password, class: 'form-control'
+            .form-group
+              %label.col-lg-3.control-label= f.label :password_confirmation
+              .col-lg-9
+                = f.password_field :password_confirmation, class: 'form-control'
+            .form-group
+              .col-lg-10.col-lg-offset-2
+                %button.btn.btn-primary{type: 'submit'}= t "devise.invitations.edit.submit_button"

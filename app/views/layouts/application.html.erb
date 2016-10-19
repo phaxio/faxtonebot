@@ -13,13 +13,20 @@
       <a href="../" class="navbar-brand">FaxTone Bot</a>
     </div>
     <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if user_signed_in? %>
+              <%= link_to 'Logout', :destroy_user_session, method: :delete %>
+          <% end %>
+        </li>
+      </ul>
     </div>
+
   </div>
 </div>
 
 <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <%= render_flashes %>
   <%= yield %>
 </div>
 

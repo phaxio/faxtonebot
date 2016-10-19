@@ -9,3 +9,12 @@ p.flash {
 .top-buffer {
   margin-top:10px;
 }
+
+#error_explanation {
+  font-weight: bold;
+  color: red;
+
+  h2 {
+    font-size: 16px;
+  }
+}
