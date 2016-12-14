@@ -1,7 +1,7 @@
 require 'csv'
 
 class ToneCheckGroupsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def index
     @groups = ToneCheckGroup.all
@@ -14,6 +14,10 @@ class ToneCheckGroupsController < ApplicationController
 
   def show
     @group = ToneCheckGroup.find(params[:id])
+    @share_mode = @group.share_token == params[:token]
+
+    authenticate_user! unless @share_mode
+
     @title = @group.name
 
     respond_to do |format|

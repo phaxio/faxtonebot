@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :tone_check_groups
   post '/tone_check_groups/:id/recheck', to: 'tone_check_groups#recheck', as: :tone_check_group_recheck
+  get '/tone_check_groups/:id/:token', to: 'tone_check_groups#show', as: :tone_check_group_shared
 
   post '/twilml/pause', to: 'twilml#pause', as: :twilml_pause
 

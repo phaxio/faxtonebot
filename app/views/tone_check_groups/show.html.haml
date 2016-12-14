@@ -2,14 +2,19 @@
   .row
     .col-lg-5
       %h1{style: 'margin: 0px'}= @title
-    .col-lg-4.col-lg-offset-3{style: 'text-align: right'}
+    .col-lg-5.col-lg-offset-2{style: 'text-align: right'}
       -if @group.complete?
         =link_to '#', class: 'btn btn-primary btn-sm download_report' do
           %span.glyphicon.glyphicon-download-alt
           &nbsp; Download report
-      =link_to tone_check_group_recheck_path(@group), class: 'btn btn-primary btn-sm recheck_group' do
-        %span.glyphicon.glyphicon-repeat
-        &nbsp; Recheck all numbers
+      - unless @share_mode
+        =link_to tone_check_group_recheck_path(@group), class: 'btn btn-primary btn-sm recheck_group' do
+          %span.glyphicon.glyphicon-repeat
+          &nbsp; Recheck all numbers
+        =link_to '#', class: 'btn btn-primary btn-sm share' do
+          %span.glyphicon.glyphicon-share-alt
+          &nbsp; Share
+
 .row
   = render_flashes
 
@@ -41,7 +46,29 @@
             =link_to tone_check_update_path(check), "data-id": check.id, class: 'btn btn-info btn-xs edit_check' do
               %span.glyphicon.glyphicon-edit
 
-#recheck_confirm_modal.modal.fade{"aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+
+#share_modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#exampleModalLabel.modal-title
+          Share link
+      .modal-body
+        You can send this link to others who do not have a FaxTone Bot account to allow them to view this group:
+        %br
+        %br
+        %input#share_link.form-control{type: 'text', value: tone_check_group_shared_url(@group.id, @group.share_token)}
+        %br
+        %a.copy{href: '#', "data-clipboard-action":"copy", "data-clipboard-target":"#share_link"} Copy to clipboard
+
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-danger{:type => "button"} Yep, recheck 'em all!
+
+
+#recheck_confirm_modal.modal.fade{:role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
@@ -57,7 +84,7 @@
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
         %button.btn.btn-danger{:type => "button"} Yep, recheck 'em all!
 
-#download_report_modal.modal.fade{"aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+#download_report_modal.modal.fade{:role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header

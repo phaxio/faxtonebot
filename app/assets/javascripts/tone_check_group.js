@@ -32,6 +32,16 @@ $(document).ready(function(){
         $('#download_report_modal').modal('show');
     });
 
+    $('a.share').click(function(el){
+        $('#share_modal').modal('show')
+        new Clipboard('a.copy');
+    });
+
+    $('a.copy').click(function(el){
+        $(this).html("Copied!")
+        $(this).fadeOut(2000);
+    });
+
     $('a.edit_check').click(function(el){
         var that = this;
         $.get($(this).attr('href'), function(data){

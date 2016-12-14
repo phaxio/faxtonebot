@@ -1,8 +1,9 @@
 require 'csv'
+require 'securerandom'
 
 class ToneCheckGroup < ActiveRecord::Base
   default_scope { order(created_at: :desc) }
-
+  before_create :init_share_token
   has_many :tone_checks, -> { order number: :asc }, dependent: :destroy
 
   validates :name, presence: true
@@ -51,5 +52,9 @@ class ToneCheckGroup < ActiveRecord::Base
         csv << attributes.map{ |attr| check.send(attr) }
       end
     end
+  end
+
+  def init_share_token
+    self.share_token = SecureRandom.hex
   end
 end
