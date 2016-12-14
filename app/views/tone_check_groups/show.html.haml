@@ -8,9 +8,11 @@
           %span.glyphicon.glyphicon-download-alt
           &nbsp; Download report
       - unless @share_mode
+        &nbsp;
         =link_to tone_check_group_recheck_path(@group), class: 'btn btn-primary btn-sm recheck_group' do
           %span.glyphicon.glyphicon-repeat
           &nbsp; Recheck all numbers
+        &nbsp;
         =link_to '#', class: 'btn btn-primary btn-sm share' do
           %span.glyphicon.glyphicon-share-alt
           &nbsp; Share
@@ -43,6 +45,7 @@
           %td
             =link_to tone_check_recheck_path(check), method: 'post', class: 'btn btn-primary btn-xs' do
               %span.glyphicon.glyphicon-repeat
+            &nbsp;
             =link_to tone_check_update_path(check), "data-id": check.id, class: 'btn btn-info btn-xs edit_check' do
               %span.glyphicon.glyphicon-edit
 
