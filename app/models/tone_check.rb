@@ -21,7 +21,7 @@ class ToneCheck < ActiveRecord::Base
     @call = @client.calls.create(
         from: ENV["TWILIO_FROM_NUMBER"],
         to: number,
-        Url: ENV["PUBLIC_HOST"] + Rails.application.routes.url_helpers.twilml_pause_path,
+        Url: ENV["PUBLIC_HOST"] + Rails.application.routes.url_helpers.twilml_record_path(self),
         StatusCallback: ENV["PUBLIC_HOST"] + Rails.application.routes.url_helpers.tone_check_status_path(self)
     )
     self.status = :calling

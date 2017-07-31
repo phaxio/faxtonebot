@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   root 'tone_check_groups#index'
 
   resources :tone_check_groups
-  resources :transcriptions, only: [:create]
+  post '/transcriptions/:id', to: 'transcriptions#create', as: :create_transcription
 
   post '/tone_check_groups/:id/recheck', to: 'tone_check_groups#recheck', as: :tone_check_group_recheck
   get '/tone_check_groups/:id/:token', to: 'tone_check_groups#show', as: :tone_check_group_shared
 
-  post '/twilml/pause', to: 'twilml#pause', as: :twilml_pause
+  post '/twilml/record/:id', to: 'twilml#record', as: :twilml_record
 
   post '/tone_checks/:id/status', to: 'tone_checks#status', as: :tone_check_status
   post '/tone_checks/:id/recheck', to: 'tone_checks#recheck', as: :tone_check_recheck
