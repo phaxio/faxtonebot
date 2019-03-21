@@ -6,7 +6,7 @@ gem 'mysql2'
 gem 'phonelib'
 gem 'unicorn'
 gem 'httparty', '~> 0.13.7'
-gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'bootstrap', ">= 4.3.1"
 gem 'haml'
 gem 'sprockets-rails'
 gem 'twilio-ruby'
