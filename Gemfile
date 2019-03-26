@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.8'
 
-gem 'rails', '~> 4.2.1'
-
+gem 'rails', '~> 5.0.1'
+gem 'bundler', '> 2.0'
 gem 'mysql2'
 gem 'phonelib'
 gem 'unicorn'
